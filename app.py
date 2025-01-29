@@ -25,9 +25,9 @@ def submit_form():
     notion_data = {
         "parent": {"database_id": DATABASE_ID},
         "properties": {
-            "Owner": {"title": [{"text": {"content": data.get("owner", "")}}]},
+            "Owner": {"title": [{"text": {"content": data.get("nombre", "")}}]},
             "Email": {"email": data.get("email") if data.get("email") else None},  # Evita valores vacíos
-            "Property": {"rich_text": [{"text": {"content": data.get("Property", "")}}]}
+            "Property": {"rich_text": [{"text": {"content": data.get("mensaje", "")}}]}
         }
     }
     
