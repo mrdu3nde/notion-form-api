@@ -26,7 +26,7 @@ def submit_form():
         "parent": {"database_id": DATABASE_ID},
         "properties": {
             "owner": {"title": [{"text": {"content": data.get("owner", "")}}]},
-            "Email": {"email": data.get("Email", "")},
+            "Email": {"email": data.get("email", "")},
             "Property": {"title": [{"text": {"content": data.get("Property", "")}}]}
         }
     }
