@@ -25,10 +25,10 @@ def submit_form():
     notion_data = {
         "parent": {"database_id": DATABASE_ID},
         "properties": {
-            "Owner": {"title": [{"text": {"content": data.get("nombre", "")}}]},
+            "Owner": {"title": [{"text": {"content": data.get("owner", "")}}]},
             "Email": {"email": data.get("email") if data.get("email") else None},  # Evita valores vacíos
-            "Phone": {"number": [{"text": {"content": data.get("nombre", "")}}]},
-            "Property": {"rich_text": [{"text": {"content": data.get("mensaje", "")}}]}
+            "Phone": {"number": [{"text": {"content": data.get("phone", "")}}]},
+            "Property": {"rich_text": [{"text": {"content": data.get("address", "")}}]}
         }
     }
     
