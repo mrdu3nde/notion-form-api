@@ -5,7 +5,7 @@ from flask_cors import CORS
 app = Flask(__name__)
 CORS(app)
 
-NOTION_API_KEY = "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"
+NOTION_API_KEY = "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"
 DATABASE_ID = "558aabf97f9c493cb6ebe4d6cc5910cc"
 
 HEADERS = {
@@ -16,7 +16,7 @@ HEADERS = {
 
 @app.route('/')
 def home():
-    return "Notion Form API is running!"
+    return "Notion Form API is running! - MasterH4ck"
 
 @app.route('/submit_form', methods=['POST'])
 def submit_form():
