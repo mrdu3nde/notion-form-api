@@ -27,7 +27,7 @@ def submit_form():
         "properties": {
             "Owner": {"title": [{"text": {"content": data.get("owner", "")}}]},
             "Email": {"email": data.get("email") if data.get("email") else None},  # Evita valores vacíos
-            "Property": {"title": [{"text": {"content": data.get("Property", "")}}]}
+            "Property": {"rich_text": [{"text": {"content": data.get("Property", "")}}]}
         }
     }
     
