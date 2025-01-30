@@ -26,9 +26,12 @@ def submit_form():
         "parent": {"database_id": DATABASE_ID},
         "properties": {
             "Owner": {"title": [{"text": {"content": data.get("owner", "")}}]},
-            "Email": {"email": data.get("email") if data.get("email") else None},  # Evita valores vacíos
-            "Phone": {"number": [{"text": {"content": data.get("phone", "")}}]},
-            "Property": {"rich_text": [{"text": {"content": data.get("address", "")}}]}
+            "Email": {"email": data.get("email") if data.get("email") else None},
+            "Phone": {"number": data.get("phone")} if data.get("phone") else None,
+            "Property": {"rich_text": [{"text": {"content": data.get("address", "")}}]},
+            "Type of terrain": {"select": {"name": data.get("type_of_terrain", "")}} if data.get("type_of_terrain") else None,
+            "What kind of project do you want to do?": {"select": {"name": data.get("project_type", "")}} if data.get("project_type") else None,
+            "Size": {"number": data.get("size")} if data.get("size") else None
         }
     }
     
