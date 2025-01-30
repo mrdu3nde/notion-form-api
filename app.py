@@ -25,16 +25,24 @@ def submit_form():
     notion_data = {
         "parent": {"database_id": DATABASE_ID},
         "properties": {
-            "Owner": {"title": [{"text": {"content": data.get("owner", "")}}]}, # H4ckDev - 2025-01-29 (Formato corregido)
-            "Phone": {"phone_number": data.get("phone") or None}, # H4ckDev - 2025-01-29 (Evita omisión del campo)
+            "Owner": {"title": [{"text": {"content": data.get("owner", "")}}]},  # H4ckDev - 2025-01-29 (Formato corregido)
+            "Phone": {"phone_number": data.get("phone") or None},  # H4ckDev - 2025-01-29 (Evita omisión del campo)
             "Email": {"email": data.get("email") or None},
             "Property": {"rich_text": [{"text": {"content": data.get("address", "")}}]},
-            "Type of terrain": {"select": {"name": data.get("Type of terrain") or None}}, # H4ckDev - 2025-01-29 (Evita errores de validación)
-            "What kind of project do you want to do?": {"select": {"name": data.get("What kind of project do you want to do?") or None}}, # H4ckDev - 2025-01-29 (Evita errores de validación)
-            "Size": {"number": float(data.get("size")) if data.get("size") else None} # H4ckDev - 2025-01-29 (Convertir a número)
+            "Size": {"number": float(data.get("size")) if data.get("size") else None},  # H4ckDev - 2025-01-29 (Convertir a número)
         }
     }
-    
+
+    # 🔹 Evitar enviar `select` vacío en "Type of terrain"
+    type_of_terrain = data.get("Type of terrain")
+    if type_of_terrain:
+        notion_data["properties"]["Type of terrain"] = {"select": {"name": type_of_terrain}}  # H4ckDev - 2025-01-29 (Corrección final para Notion)
+
+    # 🔹 Evitar enviar `select` vacío en "What kind of project do you want to do?"
+    project_type = data.get("What kind of project do you want to do?")
+    if project_type:
+        notion_data["properties"]["What kind of project do you want to do?"] = {"select": {"name": project_type}}  # H4ckDev - 2025-01-29 (Corrección final para Notion)
+
     response = requests.post("https://api.notion.com/v1/pages", headers=HEADERS, json=notion_data)
     
     if response.status_code == 200:
