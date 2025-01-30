@@ -26,7 +26,7 @@ def submit_form():
         "parent": {"database_id": DATABASE_ID},
         "properties": {
             "Owner": {"title": [{"text": {"content": data.get("owner", "")}}]},  # H4ckDev - 2025-01-29 (Formato corregido)
-            "Phone": {"phone_number": data.get("phone") or None},  # H4ckDev - 2025-01-29 (Evita omisión del campo)
+            "Phone": {"phone_number": int(data.get("phone")) if data.get("phone") else None},  # H4ckDev - 2025-01-29 (Convertir Phone a número)
             "Email": {"email": data.get("email") or None},
             "Property": {"rich_text": [{"text": {"content": data.get("address", "")}}]},
             "Size": {"number": float(data.get("size")) if data.get("size") else None},  # H4ckDev - 2025-01-29 (Convertir a número)
