@@ -25,13 +25,13 @@ def submit_form():
     notion_data = {
         "parent": {"database_id": DATABASE_ID},
         "properties": {
-            "Owner": {"title": [{"text": {"content": data.get("owner", "")}}]},
-            "Email": {"email": data.get("email") if data.get("email") else None},
-            "Phone": {"number": data.get("phone")} if data.get("phone") else None,
+            "Owner": {"title": [{"text": {"content": data.get("owner", "")}}]}, # H4ckDev - 2025-01-29 (Formato corregido)
+            "Phone": {"phone_number": data.get("phone") or None}, # H4ckDev - 2025-01-29 (Evita omisión del campo)
+            "Email": {"email": data.get("email") or None},
             "Property": {"rich_text": [{"text": {"content": data.get("address", "")}}]},
-            "Type of terrain": {"select": {"name": data.get("type_of_terrain", "")}} if data.get("type_of_terrain") else None,
-            "What kind of project do you want to do?": {"select": {"name": data.get("project_type", "")}} if data.get("project_type") else None,
-            "Size": {"number": data.get("size")} if data.get("size") else None
+            "Type of terrain": {"select": {"name": data.get("Type of terrain") or None}}, # H4ckDev - 2025-01-29 (Evita errores de validación)
+            "What kind of project do you want to do?": {"select": {"name": data.get("What kind of project do you want to do?") or None}}, # H4ckDev - 2025-01-29 (Evita errores de validación)
+            "Size": {"number": float(data.get("size")) if data.get("size") else None} # H4ckDev - 2025-01-29 (Convertir a número)
         }
     }
     
@@ -44,3 +44,5 @@ def submit_form():
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)
+
+# H4ckDev - 2025-01-29
