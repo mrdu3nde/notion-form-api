@@ -29,7 +29,7 @@ def submit_form():
             "Phone": {"phone_number": int(data.get("phone")) if data.get("phone") else None},  # H4ckDev - 2025-01-29 (Convertir Phone a número)
             "Email": {"email": data.get("email") or None},
             "Property": {"rich_text": [{"text": {"content": data.get("address", "")}}]},
-            "Size": {"number": float(data.get("size")) if data.get("size") else None},  # H4ckDev - 2025-01-29 (Convertir a número)
+            "size": {"number": float(data.get("size")) if data.get("size") else None},  # H4ckDev - 2025-01-29 (Asegurar que size sea número)
         }
     }
 
